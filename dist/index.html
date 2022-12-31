@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <main class="bg-slate-200 dark:bg-slate-800 pb-8">
+        <nav class="bg-slate-300 dark:bg-slate-600 py-4 px-24 mb-8 flex justify-between items-end">
+            <h1 class="inline-block">
+                Inventory App using Tailwind and TypeScript
+            </h1>
+
+            <div class="flex items-center gap-x-2">
+                <span class="inline-block">theme</span>
+                <div id="toggle-div" class="toggle-switch">
+                    <label id="toggle-label">
+                        <input id="toggle-input" type='checkbox'>
+                        <span id="toggle-span" class='slider'></span>
+                    </label>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Container -->
+        <div class="container max-w-xl mx-auto px-4 md:px-0">
+
+            <!-- Add Category Section -->
+            <section id="add-category" class="mb-8">
+                <h1 class="mb-3">Add new category</h1>
+                <form>
+                    <div id="add-category-inputs" class="flex flex-col gap-y-6 mb-8">
+                        <div>
+                            <label for="category-title" class="text block mb-2">Category Title</label>
+                            <input type="text" name="category-title" id="category-title" class="input">
+                        </div>
+
+                        <div>
+                            <label for="category-description" class="text block mb-2">Category Description</label>
+                            <textarea type="text" class="w-full input" id="category-description"></textarea>
+                        </div>
+                    </div>
+
+                    <div id="add-category-buttons" class="flex flex-col gap-y-4 md:flex-row md:gap-y-0 md:gap-x-4">
+                        <button class="flex-1 text">Cancle</button>
+                        <button class="flex-1 text bg-slate-400 text-slate-100 dark:bg-slate-500 ">Add Category
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <h2 class="md:text-lg text-slate-400 dark:text-slate-500 cursor-pointer underline underline-offset-4 mb-10">
+                Add
+                new category?</h2>
+
+            <!-- Add new Product Section -->
+            <section id="add-product" class="mb-8">
+                <h1 class="mb-3">Add new category</h1>
+                <form>
+                    <div id="add-product-inputs" class="flex flex-col gap-y-6 mb-8">
+                        <div>
+                            <label for="product-title" class="text block mb-2">Title</label>
+                            <input type="text" name="product-title" id="product-title" class="input">
+                        </div>
+
+                        <div>
+                            <label for="product-quantity" class="text block mb-2">Quantity</label>
+                            <input type="number" class="input" id="product-quantity">
+                        </div>
+
+                        <div>
+                            <label for="product-category" class="text block mb-2">Category</label>
+                            <select class="input w-full" id="product-category">
+                                <option value="none" selected>select a category</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="add-category-buttons">
+                        <button class="text w-full">Add</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Product Section -->
+            <section>
+                <div class="flex justify-between items-center mb-6">
+                    <label for="search-input" class="text">Search</label>
+                    <input type="text" id="search-input" class="input">
+                </div>
+
+                <div class="flex justify-between items-center mb-6">
+                    <label for="sort-categoryt" class="text">Sort</label>
+                    <select class="input" id="sort-category">
+                        <option value="none" selected>select a category</option>
+                    </select>
+                </div>
+
+                <div id="product-list">
+                    <div class="flex justify-between items-center">
+                        <span id="title" class="block text">LG Monitor</span>
+
+                        <div class="flex items-center gap-x-4 ">
+                            <span id="date" class="block text">Date</span>
+                            <span id="categori"
+                                class="block text border border-slate-400 rounded-md p-1 text-sm">category</span>
+                            <span id="quantity"
+                                class="bg-transparent flex items-center justify-center w-6 h-6 text border border-slate-500 rounded-full">5</span>
+                            <button id="delete-btn"
+                                class="p-1 text-sm text-red-700 dark:text-red-400 font-bold border-red-400 dark:border-red-500">delete</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

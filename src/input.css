@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply font-bold text-lg md:text-xl text-slate-700 dark:text-slate-400;
+  }
+
+  button {
+    @apply rounded-lg border border-slate-500 dark:border-slate-400 px-4 py-2 bg-transparent;
+  }
+
+  form {
+    @apply bg-slate-300 dark:bg-slate-600 p-6 rounded-lg border border-slate-400;
+  }
+}
+
+@layer components {
+  .input {
+    @apply rounded-xl bg-transparent border border-slate-500 text-slate-800 dark:text-slate-300;
+  }
+
+  .text {
+    @apply text-slate-800 dark:text-slate-300;
+  }
+}
+
+:root {
+  --light: #d8dbe0;
+  --dark: #28292c;
+}
+
+#toggle-div {
+  position: relative;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#toggle-label {
+  position: absolute;
+  width: 100%;
+  height: 25px;
+  background-color: var(--dark);
+  border-radius: 12.5px;
+  cursor: pointer;
+}
+
+#toggle-input {
+  position: absolute;
+  display: none;
+}
+
+#toggle-span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12.5px;
+  transition: 0.3s;
+  left: 0;
+}
+
+#toggle-input:checked ~ #toggle-span {
+  background-color: var(--light);
+  transform: scale(105%);
+}
+
+#toggle-span::before {
+  content: "";
+  position: absolute;
+  top: 3.25px;
+  left: 4px;
+  width: 18.75px;
+  height: 18.75px;
+  border-radius: 50%;
+  box-shadow: inset 7px -1px 0px 0px var(--light);
+  background-color: var(--dark);
+  transition: 0.3s;
+}
+
+#toggle-input:checked ~ #toggle-span::before {
+  transform: translateX(23.75px);
+  background-color: var(--dark);
+  box-shadow: none;
+}
+
+#toggle-input:checked ~ #toggle-label {
+  background-color: var(--light);
+}
