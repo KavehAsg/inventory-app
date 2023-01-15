@@ -3,6 +3,27 @@
 @tailwind utilities;
 
 @layer base {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus,
+  input:autofill,
+  input:autofill:hover,
+  input:autofill:focus,
+  textarea:autofill,
+  textarea:autofill:hover,
+  textarea:autofill:focus,
+  select:autofill,
+  select:autofill:hover, 
+  select:autofill:focus {
+    @apply shadow-autoComplete shadow-slate-300 dark:shadow-slate-600 caret-slate-700 dark:caret-slate-200 colorfill-dark dark:colorfill-light; 
+  }
+
   h1 {
     @apply font-bold text-lg md:text-xl text-slate-700 dark:text-slate-400;
   }
@@ -24,6 +45,15 @@
   .text {
     @apply text-slate-800 dark:text-slate-300;
   }
+}
+
+@layer utilities{
+ .colorfill-light {
+  -webkit-text-fill-color: rgb(203 213 225);
+ }
+ .colorfill-dark {
+  -webkit-text-fill-color: rgb(30 41 59 );
+ }
 }
 
 :root {

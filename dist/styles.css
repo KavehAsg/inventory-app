@@ -585,6 +585,83 @@ select {
   outline: 1px auto -webkit-focus-ring-color;
 }
 
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, textarea:-webkit-autofill, textarea:-webkit-autofill:hover, textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus {
+  caret-color: #334155;
+  --tw-shadow: 0 0 0px 1000px inset;
+  --tw-shadow-colored: inset 0 0 0px 1000px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-shadow-color: #cbd5e1;
+  --tw-shadow: var(--tw-shadow-colored);
+  -webkit-text-fill-color: rgb(30 41 59 );
+}
+
+input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus,
+  input:autofill,
+  input:autofill:hover,
+  input:autofill:focus,
+  textarea:autofill,
+  textarea:autofill:hover,
+  textarea:autofill:focus,
+  select:autofill,
+  select:autofill:hover, 
+  select:autofill:focus {
+  caret-color: #334155;
+  --tw-shadow: 0 0 0px 1000px inset;
+  --tw-shadow-colored: inset 0 0 0px 1000px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-shadow-color: #cbd5e1;
+  --tw-shadow: var(--tw-shadow-colored);
+  -webkit-text-fill-color: rgb(30 41 59 );
+}
+
+.dark 
+  input:-webkit-autofill, .dark 
+  input:-webkit-autofill:hover, .dark 
+  input:-webkit-autofill:focus, .dark 
+  textarea:-webkit-autofill, .dark 
+  textarea:-webkit-autofill:hover, .dark 
+  textarea:-webkit-autofill:focus, .dark 
+  select:-webkit-autofill, .dark 
+  select:-webkit-autofill:hover, .dark  
+  select:-webkit-autofill:focus {
+  caret-color: #e2e8f0;
+  --tw-shadow-color: #475569;
+  --tw-shadow: var(--tw-shadow-colored);
+  -webkit-text-fill-color: rgb(203 213 225);
+}
+
+.dark input:-webkit-autofill,.dark 
+  input:-webkit-autofill:hover,.dark 
+  input:-webkit-autofill:focus,.dark 
+  textarea:-webkit-autofill,.dark 
+  textarea:-webkit-autofill:hover,.dark 
+  textarea:-webkit-autofill:focus,.dark 
+  select:-webkit-autofill,.dark 
+  select:-webkit-autofill:hover,.dark 
+  select:-webkit-autofill:focus,.dark 
+  input:autofill,.dark 
+  input:autofill:hover,.dark 
+  input:autofill:focus,.dark 
+  textarea:autofill,.dark 
+  textarea:autofill:hover,.dark 
+  textarea:autofill:focus,.dark 
+  select:autofill,.dark 
+  select:autofill:hover,.dark  
+  select:autofill:focus {
+  caret-color: #e2e8f0;
+  --tw-shadow-color: #475569;
+  --tw-shadow: var(--tw-shadow-colored);
+  -webkit-text-fill-color: rgb(203 213 225);
+}
+
 h1 {
   font-size: 1.125rem;
   line-height: 1.75rem;
