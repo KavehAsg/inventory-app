@@ -33,9 +33,9 @@ class CategoryView {
   }
 
   setCategory() {
-    let list: string = `<option value="none" selected>select a category</option>`;
+    let list: string = `<option value="none" class="text bg-slate-300 dark:bg-slate-600" selected>select a category</option>`;
     this.categories.forEach((item) => {
-      list += `<option value="${item.id}" >${item.title}</option>`;
+      list += `<option class="text bg-slate-300 dark:bg-slate-600" value="${item.id}" >${item.title}</option>`;
     });
     categoryList.innerHTML = list;
   }
