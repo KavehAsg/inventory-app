@@ -10,7 +10,7 @@ class CategoryView {
     constructor() {
         addCategoryBtn === null || addCategoryBtn === void 0 ? void 0 : addCategoryBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            this.addCategory(e);
+            this.titleValidation(e);
         });
         cancleCategoryBtn === null || cancleCategoryBtn === void 0 ? void 0 : cancleCategoryBtn.addEventListener("click", (e) => {
             e.preventDefault();
@@ -19,6 +19,22 @@ class CategoryView {
         categoryLink === null || categoryLink === void 0 ? void 0 : categoryLink.addEventListener("click", () => this.showCategorySection());
         this.categories = JSON.parse(localStorage.getItem("category")) || [];
     }
+    titleValidation(e) {
+        let isExisted = false;
+        if (categoryTitle.value.trim().length > 3) {
+            const title = categoryTitle.value.trim().toLocaleLowerCase();
+            this.categories.forEach((item) => item.title === title && (isExisted = true));
+            if (isExisted)
+                this.setTitleWarning("Category already exists");
+            else {
+                this.addCategory();
+                this.removeTitleWarning();
+            }
+        }
+        else {
+            this.setTitleWarning("Category title`s characters must be longer than 3");
+        }
+    }
     setCategory() {
         let list = `<option value="none" class="text bg-slate-300 dark:bg-slate-600" selected>select a category</option>`;
         this.categories.forEach((item) => {
@@ -26,35 +42,29 @@ class CategoryView {
         });
         categoryList.innerHTML = list;
     }
-    addCategory(e) {
-        if (categoryTitle.value.trim().length > 3) {
-            const title = categoryTitle.value.trim().toLocaleLowerCase();
-            const description = categoryDescription.value.trim().toLocaleLowerCase();
-            const date = new Date();
-            const id = new Date().getTime();
-            const newCategory = {
-                id: id,
-                title: title,
-                description: description,
-                createdDate: date,
-            };
-            if (localStorage.getItem("category")) {
-                const categoryData = JSON.parse(localStorage.getItem("category"));
-                categoryData.push(newCategory);
-                localStorage.setItem("category", JSON.stringify(categoryData));
-            }
-            else {
-                localStorage.setItem("category", JSON.stringify([newCategory]));
-            }
-            this.categories = JSON.parse(localStorage.getItem("category"));
-            this.setCategory();
-            categoryTitle.classList.remove("border-red-500");
-            this.removeTitleWarning();
+    addCategory() {
+        const title = categoryTitle.value.trim().toLocaleLowerCase();
+        const description = categoryDescription.value.trim().toLocaleLowerCase();
+        const date = new Date();
+        const id = new Date().getTime();
+        const newCategory = {
+            id: id,
+            title: title,
+            description: description,
+            createdDate: date,
+        };
+        if (localStorage.getItem("category")) {
+            const categoryData = JSON.parse(localStorage.getItem("category"));
+            categoryData.push(newCategory);
+            localStorage.setItem("category", JSON.stringify(categoryData));
         }
         else {
-            categoryTitle.classList.add("border-red-500");
-            this.setTitleWarning("Category title`s characters must be longer than 3");
+            localStorage.setItem("category", JSON.stringify([newCategory]));
         }
+        this.categories = JSON.parse(localStorage.getItem("category"));
+        this.setCategory();
+        categoryTitle.value = "";
+        categoryDescription.value = "";
     }
     showCategorySection() {
         categorySection.classList.toggle("hidden");
@@ -63,10 +73,12 @@ class CategoryView {
         categoryTitleWarning.classList.remove("hidden");
         categoryTitleWarning.classList.add("block");
         categoryTitleWarning.innerText = error;
+        categoryTitle.classList.add("border-red-500");
     }
     removeTitleWarning() {
         categoryTitleWarning.classList.remove("block");
         categoryTitleWarning.classList.add("hidden");
+        categoryTitle.classList.remove("border-red-500");
     }
 }
 export default new CategoryView();

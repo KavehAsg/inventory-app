@@ -21,6 +21,7 @@
                 <span class="inline-block">theme</span>
                 <div id="toggle-div" class="toggle-switch">
                     <label id="toggle-label">
+                        <label for="toggle-input" class="hidden">error fix</label>
                         <input id="toggle-input" type='checkbox'>
                         <span id="toggle-span" class='slider'></span>
                     </label>
@@ -38,7 +39,7 @@
                     <div id="add-category-inputs" class="flex flex-col gap-y-6 mb-8">
                         <div>
                             <label for="category-title" class="text block mb-2">Category Title</label>
-                            <input type="text" name="category-title" id="category-title" class="input">
+                            <input type="text" name="category-title" id="category-title" class="input ">
                             <span id="category-title-warning" class="hidden mt-2 text-red-500"></span>
                         </div>
 
@@ -75,7 +76,7 @@
 
                         <div>
                             <label for="product-category" class="text block mb-2">Category</label>
-                            <select class="input w-full" id="product-category">
+                            <select class="input w-full" id="product-category" name="product-category">
                                 <!-- <option value="none" selected>select a category</option> -->
                             </select>
                         </div>
@@ -96,7 +97,7 @@
 
                 <div class="flex justify-between items-center mb-6">
                     <label for="sort-categoryt" class="text">Sort</label>
-                    <select class="input" id="sort-category">
+                    <select  name="sort-category" class="input" id="sort-category">
                         <option value="none" selected>select a category</option>
                     </select>
                 </div>
