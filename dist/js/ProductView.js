@@ -3,11 +3,14 @@ const productQuantity = document.querySelector("#product-quantity");
 const productCategory = document.querySelector("#product-category");
 const addProductBtn = document.querySelector("#add-product-btn");
 const productList = document.querySelector("#product-list");
+const productQuantityWarning = document.querySelector("#product-quantity-warning");
+const productCategoryWarning = document.querySelector("#product-category-warning");
+const productTitleWarning = document.querySelector("#product-title-warning");
 class ProductView {
     constructor() {
         addProductBtn === null || addProductBtn === void 0 ? void 0 : addProductBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            this.addProduct();
+            this.productValidation();
         });
         this.products = JSON.parse(localStorage.getItem("products")) || [];
     }
@@ -31,12 +34,25 @@ class ProductView {
         });
         productList.innerHTML = list;
     }
+    productValidation() {
+        if (productTitle.value.length === 0) {
+            this.removeWarning();
+            this.setTitleWarning("Type a title for product");
+        }
+        else if (Number(productQuantity.value) < 1) {
+            this.removeWarning();
+            this.setQuantityWarning("Product number must be larger than 0");
+        }
+        else if (productCategory.value === "none") {
+            this.removeWarning();
+            this.setCategoryWarning("Select a category");
+        }
+        else {
+            this.addProduct();
+            this.removeWarning();
+        }
+    }
     addProduct() {
-        // const title = productTitle.value;
-        // const quantity = productQuantity.value;
-        // const category = productCategory.textContent;
-        // const date = new Date();
-        // const id = new Date().getTime();
         const newProduct = {
             title: productTitle.value,
             quantity: Number(productQuantity.value),
@@ -56,6 +72,35 @@ class ProductView {
         this.setProducts();
         productTitle.value = "";
         productQuantity.value = "";
+    }
+    setTitleWarning(error) {
+        productTitleWarning.classList.remove("hidden");
+        productTitleWarning.classList.add("block");
+        productTitleWarning.innerText = error;
+        productTitle.classList.add("border-red-500");
+    }
+    setQuantityWarning(error) {
+        productQuantityWarning.classList.remove("hidden");
+        productQuantityWarning.classList.add("block");
+        productQuantityWarning.innerText = error;
+        productQuantity.classList.add("border-red-500");
+    }
+    setCategoryWarning(error) {
+        productCategoryWarning.classList.remove("hidden");
+        productCategoryWarning.classList.add("block");
+        productCategoryWarning.innerText = error;
+        productCategory.classList.add("border-red-500");
+    }
+    removeWarning() {
+        productQuantityWarning.classList.remove("block");
+        productQuantityWarning.classList.add("hidden");
+        productQuantity.classList.remove("border-red-500");
+        productCategoryWarning.classList.remove("block");
+        productCategoryWarning.classList.add("hidden");
+        productCategory.classList.remove("border-red-500");
+        productTitleWarning.classList.remove("block");
+        productTitleWarning.classList.add("hidden");
+        productTitle.classList.remove("border-red-500");
     }
 }
 export default new ProductView();

@@ -43,7 +43,7 @@ class CategoryView {
   constructor() {
     addCategoryBtn?.addEventListener("click", (e) => {
       e.preventDefault();
-      this.titleValidation();
+      this.categoryValidation();
     });
     cancleCategoryBtn?.addEventListener("click", (e) => {
       e.preventDefault();
@@ -53,7 +53,7 @@ class CategoryView {
     this.categories = JSON.parse(localStorage.getItem("category")!) || [];
   }
 
-  titleValidation() {
+  categoryValidation() {
     let isExisted: boolean = false;
     if (categoryTitle.value.trim().length > 3) {
       const title = categoryTitle.value.trim().toLocaleLowerCase();

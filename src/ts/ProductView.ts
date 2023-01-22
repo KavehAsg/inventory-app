@@ -16,6 +16,18 @@ const addProductBtn = document.querySelector(
 
 const productList = document.querySelector("#product-list") as HTMLDivElement;
 
+const productQuantityWarning = document.querySelector(
+  "#product-quantity-warning"
+) as HTMLSpanElement;
+
+const productCategoryWarning = document.querySelector(
+  "#product-category-warning"
+) as HTMLSpanElement;
+
+const productTitleWarning = document.querySelector(
+  "#product-title-warning"
+) as HTMLSpanElement;
+
 interface productType {
   id: number;
   title: string;
@@ -30,7 +42,7 @@ class ProductView {
   constructor() {
     addProductBtn?.addEventListener("click", (e) => {
       e.preventDefault();
-      this.addProduct();
+      this.productValidation();
     });
     this.products = JSON.parse(localStorage.getItem("products")!) || [];
   }
@@ -53,16 +65,27 @@ class ProductView {
   </div>
   `;
     });
-  productList.innerHTML = list;  
+    productList.innerHTML = list;
+  }
+
+  productValidation(): void {
+    if(productTitle.value.length === 0){
+      this.removeWarning();
+      this.setTitleWarning("Type a title for product")
+    }
+    else if (Number(productQuantity.value) < 1 ) {
+      this.removeWarning();
+      this.setQuantityWarning("Product number must be larger than 0");
+    } else if (productCategory.value === "none"){
+      this.removeWarning();
+      this.setCategoryWarning("Select a category");
+    } else {
+      this.addProduct();
+      this.removeWarning();
+    }
   }
 
   addProduct(): void {
-    // const title = productTitle.value;
-    // const quantity = productQuantity.value;
-    // const category = productCategory.textContent;
-    // const date = new Date();
-    // const id = new Date().getTime();
-
     const newProduct: productType = {
       title: productTitle.value,
       quantity: Number(productQuantity.value),
@@ -79,11 +102,45 @@ class ProductView {
     } else {
       localStorage.setItem("products", JSON.stringify([newProduct]));
     }
-
     this.products = JSON.parse(localStorage.getItem("products")!);
     this.setProducts();
     productTitle.value = "";
     productQuantity.value = "";
+  }
+
+  setTitleWarning(error: string): void {
+    productTitleWarning.classList.remove("hidden");
+    productTitleWarning.classList.add("block");
+    productTitleWarning.innerText = error;
+    productTitle.classList.add("border-red-500");
+  }
+
+  setQuantityWarning(error: string): void {
+    productQuantityWarning.classList.remove("hidden");
+    productQuantityWarning.classList.add("block");
+    productQuantityWarning.innerText = error;
+    productQuantity.classList.add("border-red-500");
+  }
+
+  setCategoryWarning(error: string): void {
+    productCategoryWarning.classList.remove("hidden");
+    productCategoryWarning.classList.add("block");
+    productCategoryWarning.innerText = error;
+    productCategory.classList.add("border-red-500");
+  }
+
+  removeWarning(): void {
+    productQuantityWarning.classList.remove("block");
+    productQuantityWarning.classList.add("hidden");
+    productQuantity.classList.remove("border-red-500");
+
+    productCategoryWarning.classList.remove("block");
+    productCategoryWarning.classList.add("hidden");
+    productCategory.classList.remove("border-red-500");
+
+    productTitleWarning.classList.remove("block");
+    productTitleWarning.classList.add("hidden");
+    productTitle.classList.remove("border-red-500");
   }
 }
 

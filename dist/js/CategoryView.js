@@ -10,7 +10,7 @@ class CategoryView {
     constructor() {
         addCategoryBtn === null || addCategoryBtn === void 0 ? void 0 : addCategoryBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            this.titleValidation();
+            this.categoryValidation();
         });
         cancleCategoryBtn === null || cancleCategoryBtn === void 0 ? void 0 : cancleCategoryBtn.addEventListener("click", (e) => {
             e.preventDefault();
@@ -19,7 +19,7 @@ class CategoryView {
         categoryLink === null || categoryLink === void 0 ? void 0 : categoryLink.addEventListener("click", () => this.showCategorySection());
         this.categories = JSON.parse(localStorage.getItem("category")) || [];
     }
-    titleValidation() {
+    categoryValidation() {
         let isExisted = false;
         if (categoryTitle.value.trim().length > 3) {
             const title = categoryTitle.value.trim().toLocaleLowerCase();

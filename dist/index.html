@@ -67,17 +67,20 @@
                         <div>
                             <label for="product-title" class="text block mb-2">Title</label>
                             <input type="text" name="product-title" id="product-title" class="input">
+                            <span id="product-title-warning" class="hidden mt-2 text-red-500"></span>
                         </div>
 
                         <div>
                             <label for="product-quantity" class="text block mb-2">Quantity</label>
                             <input type="number" class="input" id="product-quantity">
+                            <span id="product-quantity-warning" class="hidden mt-2 text-red-500"></span>
                         </div>
 
                         <div>
                             <label for="product-category" class="text block mb-2">Category</label>
                             <select class="input w-full" id="product-category" name="product-category">
                             </select>
+                            <span id="product-category-warning" class="hidden mt-2 text-red-500"></span>
                         </div>
                     </div>
 
@@ -101,19 +104,7 @@
                     </select>
                 </div>
 
-                <div id="product-list">
-                    <!-- <div class="flex justify-between items-center">
-                        <span id="title" class="block text">LG Monitor</span>
-                        <div class="flex items-center gap-x-4 ">
-                            <span id="date" class="block text">Date</span>
-                            <span id="categori"
-                                class="block text border border-slate-400 rounded-md p-1 text-sm">category</span>
-                            <span id="quantity"
-                                class="bg-transparent flex items-center justify-center w-6 h-6 text border border-slate-500 rounded-full">5</span>
-                            <button id="delete-btn"
-                                class="p-1 text-sm text-red-700 dark:text-red-400 font-bold border-red-400 dark:border-red-500">delete</button>
-                        </div>
-                    </div> -->
+                <div id="product-list" class="flex flex-col gap-4">
                 </div>
             </section>
 
