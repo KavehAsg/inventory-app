@@ -8,11 +8,11 @@ const categoryDescription = document.querySelector(
 
 const addCategoryBtn = document.querySelector(
   "#add-category-btn"
-) as HTMLInputElement;
+) as HTMLButtonElement;
 
 const cancleCategoryBtn = document.querySelector(
   "#cancle-category-btn"
-) as HTMLInputElement;
+) as HTMLButtonElement;
 
 const categoryList = document.querySelector(
   "#product-category"
@@ -34,7 +34,7 @@ interface categoryType {
   id: number;
   title: string;
   description: string;
-  createdDate: Date;
+  createdDate: string;
 }
 
 class CategoryView {
@@ -43,7 +43,7 @@ class CategoryView {
   constructor() {
     addCategoryBtn?.addEventListener("click", (e) => {
       e.preventDefault();
-      this.titleValidation(e);
+      this.titleValidation();
     });
     cancleCategoryBtn?.addEventListener("click", (e) => {
       e.preventDefault();
@@ -53,7 +53,7 @@ class CategoryView {
     this.categories = JSON.parse(localStorage.getItem("category")!) || [];
   }
 
-  titleValidation(e: MouseEvent) {
+  titleValidation() {
     let isExisted: boolean = false;
     if (categoryTitle.value.trim().length > 3) {
       const title = categoryTitle.value.trim().toLocaleLowerCase();
@@ -79,15 +79,11 @@ class CategoryView {
   }
 
   addCategory(): void {
-    const title = categoryTitle.value.trim().toLocaleLowerCase();
-    const description = categoryDescription.value.trim().toLocaleLowerCase();
-    const date = new Date();
-    const id = new Date().getTime();
     const newCategory: categoryType = {
-      id: id,
-      title: title,
-      description: description,
-      createdDate: date,
+      id: new Date().getTime(),
+      title: categoryTitle.value.trim().toLocaleLowerCase() ,
+      description: categoryDescription.value.trim().toLocaleLowerCase() ,
+      createdDate: new Date().toISOString(),
     };
     if (localStorage.getItem("category")) {
       const categoryData: categoryType[] = JSON.parse(

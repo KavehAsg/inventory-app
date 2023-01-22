@@ -10,7 +10,7 @@ class CategoryView {
     constructor() {
         addCategoryBtn === null || addCategoryBtn === void 0 ? void 0 : addCategoryBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            this.titleValidation(e);
+            this.titleValidation();
         });
         cancleCategoryBtn === null || cancleCategoryBtn === void 0 ? void 0 : cancleCategoryBtn.addEventListener("click", (e) => {
             e.preventDefault();
@@ -19,7 +19,7 @@ class CategoryView {
         categoryLink === null || categoryLink === void 0 ? void 0 : categoryLink.addEventListener("click", () => this.showCategorySection());
         this.categories = JSON.parse(localStorage.getItem("category")) || [];
     }
-    titleValidation(e) {
+    titleValidation() {
         let isExisted = false;
         if (categoryTitle.value.trim().length > 3) {
             const title = categoryTitle.value.trim().toLocaleLowerCase();
@@ -43,15 +43,11 @@ class CategoryView {
         categoryList.innerHTML = list;
     }
     addCategory() {
-        const title = categoryTitle.value.trim().toLocaleLowerCase();
-        const description = categoryDescription.value.trim().toLocaleLowerCase();
-        const date = new Date();
-        const id = new Date().getTime();
         const newCategory = {
-            id: id,
-            title: title,
-            description: description,
-            createdDate: date,
+            id: new Date().getTime(),
+            title: categoryTitle.value.trim().toLocaleLowerCase(),
+            description: categoryDescription.value.trim().toLocaleLowerCase(),
+            createdDate: new Date().toISOString(),
         };
         if (localStorage.getItem("category")) {
             const categoryData = JSON.parse(localStorage.getItem("category"));
