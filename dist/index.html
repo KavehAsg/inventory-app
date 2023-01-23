@@ -50,14 +50,17 @@
                     </div>
 
                     <div id="add-category-buttons" class="flex flex-col gap-y-4 md:flex-row md:gap-y-0 md:gap-x-4">
-                        <button id="cancle-category-btn" class="flex-1 text">Cancle</button>
-                        <button id="add-category-btn" class="flex-1 text bg-slate-400 text-slate-100 dark:bg-slate-500 ">Add Category
+                        <button type="button" id="cancle-category-btn" class="flex-1 text">Cancle</button>
+                        <button type="button" id="add-category-btn"
+                            class="flex-1 text bg-slate-400 text-slate-100 dark:bg-slate-500 ">Add Category
                         </button>
                     </div>
                 </form>
             </section>
 
-            <h2 id="category-link" class="md:text-lg text-slate-400 dark:text-slate-500 cursor-pointer underline underline-offset-4 mb-10">Add new category?</h2>
+            <h2 id="category-link"
+                class="md:text-lg text-slate-400 dark:text-slate-500 cursor-pointer underline underline-offset-4 mb-10">
+                Add new category?</h2>
 
             <!-- Add new Product Section -->
             <section id="add-product" class="mb-8">
@@ -69,7 +72,7 @@
                             <input type="text" name="product-title" id="product-title" class="input">
                             <span id="product-title-warning" class="hidden mt-2 text-red-500"></span>
                         </div>
-                        
+
                         <div>
                             <label for="product-quantity" class="text block mb-2">Quantity</label>
                             <input type="number" class="input" id="product-quantity">
@@ -85,7 +88,7 @@
                     </div>
 
                     <div id="add-product-btn">
-                        <button class="text w-full">Add</button>
+                        <button type="button" class="text w-full">Add</button>
                     </div>
                 </form>
             </section>
@@ -99,11 +102,11 @@
 
                 <div class="flex justify-between items-center mb-6">
                     <label for="sort-categoryt" class="text">Sort</label>
-                    <select  name="sort-category" class="input" id="sort-category">
+                    <select title="sorting-categories" name="sort-categories" id="sort-category" class="input">
                         <option value="none" selected>select a category</option>
                     </select>
                 </div>
-
+ 
                 <div id="product-list" class="flex flex-col gap-4">
                 </div>
             </section>
