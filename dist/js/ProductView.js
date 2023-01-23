@@ -77,30 +77,30 @@ class ProductView {
         productTitleWarning.classList.remove("hidden");
         productTitleWarning.classList.add("block");
         productTitleWarning.innerText = error;
-        productTitle.classList.add("border-red-500");
+        productTitle.classList.add("warning");
     }
     setQuantityWarning(error) {
         productQuantityWarning.classList.remove("hidden");
         productQuantityWarning.classList.add("block");
         productQuantityWarning.innerText = error;
-        productQuantity.classList.add("border-red-500");
+        productQuantity.classList.add("warning");
     }
     setCategoryWarning(error) {
         productCategoryWarning.classList.remove("hidden");
         productCategoryWarning.classList.add("block");
         productCategoryWarning.innerText = error;
-        productCategory.classList.add("border-red-500");
+        productCategory.classList.add("warning");
     }
     removeWarning() {
         productQuantityWarning.classList.remove("block");
         productQuantityWarning.classList.add("hidden");
-        productQuantity.classList.remove("border-red-500");
+        productQuantity.classList.remove("warning");
         productCategoryWarning.classList.remove("block");
         productCategoryWarning.classList.add("hidden");
-        productCategory.classList.remove("border-red-500");
+        productCategory.classList.remove("warning");
         productTitleWarning.classList.remove("block");
         productTitleWarning.classList.add("hidden");
-        productTitle.classList.remove("border-red-500");
+        productTitle.classList.remove("warning");
     }
 }
 export default new ProductView();

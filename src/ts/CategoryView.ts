@@ -108,13 +108,13 @@ class CategoryView {
     categoryTitleWarning.classList.remove("hidden");
     categoryTitleWarning.classList.add("block");
     categoryTitleWarning.innerText = error;
-    categoryTitle.classList.add("border-red-500");
+    categoryTitle.classList.add("warning");
   }
 
   removeTitleWarning(): void {
     categoryTitleWarning.classList.remove("block");
     categoryTitleWarning.classList.add("hidden");
-    categoryTitle.classList.remove("border-red-500");
+    categoryTitle.classList.remove("warning");
   }
 }
 

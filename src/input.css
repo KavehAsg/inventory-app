@@ -19,9 +19,9 @@
   textarea:autofill:hover,
   textarea:autofill:focus,
   select:autofill,
-  select:autofill:hover, 
+  select:autofill:hover,
   select:autofill:focus {
-    @apply shadow-autoComplete shadow-slate-300 dark:shadow-slate-600 caret-slate-700 dark:caret-slate-200 colorfill-dark dark:colorfill-light; 
+    @apply shadow-autoComplete shadow-slate-300 dark:shadow-slate-600 caret-slate-700 dark:caret-slate-200 colorfill-dark dark:colorfill-light;
   }
 
   h1 {
@@ -47,13 +47,18 @@
   }
 }
 
-@layer utilities{
- .colorfill-light {
-  -webkit-text-fill-color: rgb(203 213 225);
- }
- .colorfill-dark {
-  -webkit-text-fill-color: rgb(30 41 59 );
- }
+@layer utilities {
+  .colorfill-light {
+    -webkit-text-fill-color: rgb(203 213 225);
+  }
+
+  .colorfill-dark {
+    -webkit-text-fill-color: rgb(30 41 59);
+  }
+}
+
+.warning {
+  border: 3px inset #ff6550;
 }
 
 :root {
