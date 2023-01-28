@@ -10,8 +10,8 @@ const addCategoryBtn = document.querySelector(
   "#add-category-btn"
 ) as HTMLButtonElement;
 
-const cancleCategoryBtn = document.querySelector(
-  "#cancle-category-btn"
+const cancelCategoryBtn = document.querySelector(
+  "#cancel-category-btn"
 ) as HTMLButtonElement;
 
 const categoryList = document.querySelector(
@@ -45,7 +45,7 @@ class CategoryView {
       e.preventDefault();
       this.categoryValidation();
     });
-    cancleCategoryBtn?.addEventListener("click", (e) => {
+    cancelCategoryBtn?.addEventListener("click", (e) => {
       e.preventDefault();
       this.showCategorySection();
     });

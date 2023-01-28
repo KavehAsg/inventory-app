@@ -1,7 +1,7 @@
 const categoryTitle = document.querySelector("#category-title");
 const categoryDescription = document.querySelector("#category-description");
 const addCategoryBtn = document.querySelector("#add-category-btn");
-const cancleCategoryBtn = document.querySelector("#cancle-category-btn");
+const cancelCategoryBtn = document.querySelector("#cancel-category-btn");
 const categoryList = document.querySelector("#product-category");
 const categorySection = document.querySelector("#add-category");
 const categoryLink = document.querySelector("#category-link");
@@ -12,7 +12,7 @@ class CategoryView {
             e.preventDefault();
             this.categoryValidation();
         });
-        cancleCategoryBtn === null || cancleCategoryBtn === void 0 ? void 0 : cancleCategoryBtn.addEventListener("click", (e) => {
+        cancelCategoryBtn === null || cancelCategoryBtn === void 0 ? void 0 : cancelCategoryBtn.addEventListener("click", (e) => {
             e.preventDefault();
             this.showCategorySection();
         });

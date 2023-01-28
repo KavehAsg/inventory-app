@@ -1,3 +1,4 @@
+import { debounce } from "./helper.js";
 const productTitle = document.querySelector("#product-title");
 const productQuantity = document.querySelector("#product-quantity");
 const productCategory = document.querySelector("#product-category");
@@ -6,17 +7,35 @@ const productList = document.querySelector("#product-list");
 const productQuantityWarning = document.querySelector("#product-quantity-warning");
 const productCategoryWarning = document.querySelector("#product-category-warning");
 const productTitleWarning = document.querySelector("#product-title-warning");
+const searchInput = document.querySelector("#search-input");
 class ProductView {
     constructor() {
+        this.products = JSON.parse(localStorage.getItem("products")) || [];
         addProductBtn === null || addProductBtn === void 0 ? void 0 : addProductBtn.addEventListener("click", (e) => {
             e.preventDefault();
             this.productValidation();
         });
-        this.products = JSON.parse(localStorage.getItem("products")) || [];
+        searchInput === null || searchInput === void 0 ? void 0 : searchInput.addEventListener("input", () => {
+            const text = searchInput.value;
+            if (text.length > 0) {
+                const searchProducts = debounce((content) => {
+                    let data;
+                    data = JSON.parse(localStorage.getItem("products"));
+                    this.products = data.filter((item) => item.title.includes(content));
+                    this.setProducts();
+                }, 1000);
+                searchProducts(text);
+            }
+            else {
+                this.products = JSON.parse(localStorage.getItem("products")) || [];
+                this.setProducts();
+            }
+        });
     }
     setProducts() {
+        var _a;
         let list = "";
-        this.products.forEach((item) => {
+        (_a = this.products) === null || _a === void 0 ? void 0 : _a.forEach((item) => {
             list += `
       <div class="flex justify-between items-center" id="${item.id}">
       <span class="block text">${item.title}</span>

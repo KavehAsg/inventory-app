@@ -1,3 +1,5 @@
+import { debounce } from "./helper.js";
+
 const productTitle = document.querySelector(
   "#product-title"
 ) as HTMLInputElement;
@@ -28,7 +30,9 @@ const productTitleWarning = document.querySelector(
   "#product-title-warning"
 ) as HTMLSpanElement;
 
-interface productType {
+const searchInput = document.querySelector("#search-input") as HTMLInputElement;
+
+export interface productType {
   id: number;
   title: string;
   category: string;
@@ -40,16 +44,33 @@ class ProductView {
   products: productType[];
 
   constructor() {
+    this.products = JSON.parse(localStorage.getItem("products")!) || [];
+
     addProductBtn?.addEventListener("click", (e) => {
       e.preventDefault();
       this.productValidation();
     });
-    this.products = JSON.parse(localStorage.getItem("products")!) || [];
+
+    searchInput?.addEventListener("input", () => {
+      const text: string = searchInput.value;
+      if (text.length > 0) {
+        const searchProducts = debounce((content) => {
+          let data: productType[] ;
+          data = JSON.parse(localStorage.getItem("products")!);
+          this.products = data.filter((item) => item.title.includes(content));
+          this.setProducts();
+        } , 1000);
+        searchProducts(text);
+      } else {
+        this.products = JSON.parse(localStorage.getItem("products")!) || [];
+        this.setProducts();
+      }
+    });
   }
 
   setProducts(): void {
     let list: string = "";
-    this.products.forEach((item) => {
+    this.products?.forEach((item) => {
       list += `
       <div class="flex justify-between items-center" id="${item.id}">
       <span class="block text">${item.title}</span>
@@ -66,14 +87,13 @@ class ProductView {
   }
 
   productValidation(): void {
-    if(productTitle.value.length === 0){
+    if (productTitle.value.length === 0) {
       this.removeWarning();
-      this.setTitleWarning("Type a title for product")
-    }
-    else if (Number(productQuantity.value) < 1 ) {
+      this.setTitleWarning("Type a title for product");
+    } else if (Number(productQuantity.value) < 1) {
       this.removeWarning();
       this.setQuantityWarning("Product number must be larger than 0");
-    } else if (productCategory.value === "none"){
+    } else if (productCategory.value === "none") {
       this.removeWarning();
       this.setCategoryWarning("Select a category");
     } else {
@@ -139,6 +159,18 @@ class ProductView {
     productTitleWarning.classList.add("hidden");
     productTitle.classList.remove("warning");
   }
+
+  // searchProducts(text: string) {
+  //   if (localStorage.getItem("products")) {
+  //     const data: productType[] = JSON.parse(localStorage.getItem("products")!);
+  //     const newData: productType[] = data.filter((item) =>
+  //       item.title.includes(text)
+  //     );
+  //     console.log(newData);
+  //     this.products = newData;
+  //     this.setProducts();
+  //   }
+  // }
 }
 
 export default new ProductView();
