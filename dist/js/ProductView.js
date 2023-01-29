@@ -40,7 +40,8 @@ class ProductView {
       <div class="flex justify-between items-center" id="${item.id}">
       <span class="block text">${item.title}</span>
       <div class="flex items-center gap-x-4 ">
-          <span class="block text">${item.createdDate}</span>
+          <span class="block text">${item.createdDate.shamsi}</span>
+          <span class="block text">${item.createdDate.time}</span>
           <span class="block text border border-slate-400 rounded-md p-1 text-sm">${item.category}</span>
           <span class="bg-transparent flex items-center justify-center w-6 h-6 text border border-slate-500 rounded-full">${item.quantity}</span>
           <button type="button" class="p-1 text-sm text-red-700 dark:text-red-400 font-bold border-red-400 dark:border-red-500">delete</button>
@@ -74,7 +75,11 @@ class ProductView {
             quantity: Number(productQuantity.value),
             category: productCategory.options[productCategory.selectedIndex].text,
             id: new Date().getTime(),
-            createdDate: new Date().getFullYear(),
+            createdDate: {
+                miladi: new Date(),
+                shamsi: new Date().toLocaleDateString('fa-IR'),
+                time: new Date().toLocaleTimeString('en-IR', { hour12: false }).substring(0, 5),
+            },
         };
         if (localStorage.getItem("products")) {
             const productsData = JSON.parse(localStorage.getItem("products"));
