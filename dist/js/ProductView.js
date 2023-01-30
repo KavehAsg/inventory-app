@@ -31,20 +31,23 @@ class ProductView {
                 this.setProducts();
             }
         });
+        productList.addEventListener("click", (e) => {
+            (e.target instanceof Element && e.target.classList.contains("delete-product-btn")) && this.deleteProduct(e);
+        });
     }
     setProducts() {
         var _a;
         let list = "";
         (_a = this.products) === null || _a === void 0 ? void 0 : _a.forEach((item) => {
             list += `
-      <div class="flex justify-between items-center" id="${item.id}">
+      <div class="flex justify-between items-center">
       <span class="block text">${item.title}</span>
       <div class="flex items-center gap-x-4 ">
           <span class="block text">${item.createdDate.shamsi}</span>
           <span class="block text">${item.createdDate.time}</span>
           <span class="block text border border-slate-400 rounded-md p-1 text-sm">${item.category}</span>
           <span class="bg-transparent flex items-center justify-center w-6 h-6 text border border-slate-500 rounded-full">${item.quantity}</span>
-          <button type="button" class="p-1 text-sm text-red-700 dark:text-red-400 font-bold border-red-400 dark:border-red-500">delete</button>
+          <button type="button"  class="delete-product-btn p-1 text-sm text-red-700 dark:text-red-400 font-bold border-red-400 dark:border-red-500"  id="${item.id}">delete</button>
       </div>
   </div>
   `;
@@ -77,8 +80,10 @@ class ProductView {
             id: new Date().getTime(),
             createdDate: {
                 miladi: new Date(),
-                shamsi: new Date().toLocaleDateString('fa-IR'),
-                time: new Date().toLocaleTimeString('en-IR', { hour12: false }).substring(0, 5),
+                shamsi: new Date().toLocaleDateString("fa-IR"),
+                time: new Date()
+                    .toLocaleTimeString("en-IR", { hour12: false })
+                    .substring(0, 5),
             },
         };
         if (localStorage.getItem("products")) {
@@ -93,6 +98,14 @@ class ProductView {
         this.setProducts();
         productTitle.value = "";
         productQuantity.value = "";
+    }
+    deleteProduct(e) {
+        let id = e.target.id;
+        let oldProducts = JSON.parse(localStorage.getItem("products"));
+        let newProduct = oldProducts.filter(product => product.id != Number(id));
+        localStorage.setItem("products", JSON.stringify(newProduct));
+        this.products = JSON.parse(localStorage.getItem("products"));
+        this.setProducts();
     }
     setTitleWarning(error) {
         productTitleWarning.classList.remove("hidden");
