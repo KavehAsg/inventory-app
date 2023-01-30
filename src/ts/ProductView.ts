@@ -32,6 +32,8 @@ const productTitleWarning = document.querySelector(
 
 const searchInput = document.querySelector("#search-input") as HTMLInputElement;
 
+const sortProductSelect = document.querySelector("#sort-category") as HTMLSelectElement;
+
 export interface productType {
   id: number;
   title: string;
@@ -43,6 +45,7 @@ export interface productType {
     time: string;
   };
 }
+
 
 class ProductView {
   products: productType[];
@@ -74,6 +77,9 @@ class ProductView {
     productList.addEventListener("click" , (e) => {
       (e.target instanceof Element && e.target.classList.contains("delete-product-btn")) && this.deleteProduct(e);
     });
+
+    sortProductSelect.addEventListener("change" ,
+    () => this.sortProducts(sortProductSelect.value));
   }
 
   setProducts(): void {
@@ -147,6 +153,16 @@ class ProductView {
       localStorage.setItem("products" , JSON.stringify(newProduct));
       this.products = JSON.parse(localStorage.getItem("products")!)
       this.setProducts();
+  }
+
+  sortProducts(value : string){
+    if(value === "newest" && localStorage.getItem("products")){
+      this.products = JSON.parse(localStorage.getItem("products")!);
+      this.setProducts();
+    } else if (value === "oldest" && localStorage.getItem("products")){
+      this.products = JSON.parse(localStorage.getItem("products")!).reverse();
+      this.setProducts();
+    }
   }
 
   setTitleWarning(error: string): void {

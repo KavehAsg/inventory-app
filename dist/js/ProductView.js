@@ -8,6 +8,7 @@ const productQuantityWarning = document.querySelector("#product-quantity-warning
 const productCategoryWarning = document.querySelector("#product-category-warning");
 const productTitleWarning = document.querySelector("#product-title-warning");
 const searchInput = document.querySelector("#search-input");
+const sortProductSelect = document.querySelector("#sort-category");
 class ProductView {
     constructor() {
         this.products = JSON.parse(localStorage.getItem("products")) || [];
@@ -34,6 +35,7 @@ class ProductView {
         productList.addEventListener("click", (e) => {
             (e.target instanceof Element && e.target.classList.contains("delete-product-btn")) && this.deleteProduct(e);
         });
+        sortProductSelect.addEventListener("change", () => this.sortProducts(sortProductSelect.value));
     }
     setProducts() {
         var _a;
@@ -106,6 +108,16 @@ class ProductView {
         localStorage.setItem("products", JSON.stringify(newProduct));
         this.products = JSON.parse(localStorage.getItem("products"));
         this.setProducts();
+    }
+    sortProducts(value) {
+        if (value === "newest" && localStorage.getItem("products")) {
+            this.products = JSON.parse(localStorage.getItem("products"));
+            this.setProducts();
+        }
+        else if (value === "oldest" && localStorage.getItem("products")) {
+            this.products = JSON.parse(localStorage.getItem("products")).reverse();
+            this.setProducts();
+        }
     }
     setTitleWarning(error) {
         productTitleWarning.classList.remove("hidden");
