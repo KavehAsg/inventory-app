@@ -55,12 +55,17 @@
   .colorfill-dark {
     -webkit-text-fill-color: rgb(30 41 59);
   }
+
+  .warning {
+    border: 3px inset #ff6550;
+  }
+
+  .overflow-wrap {
+    overflow-wrap: break-word;
+  }
 }
 
-.warning {
-  border: 3px inset #ff6550;
-}
-
+/* theme toggle button styles */
 :root {
   --light: #d8dbe0;
   --dark: #28292c;

@@ -30,7 +30,11 @@ const categoryTitleWarning = document.querySelector(
   "#category-title-warning"
 ) as HTMLSpanElement;
 
-interface categoryType {
+const categoryDescriptionWarning = document.querySelector(
+  "#category-description-warning"
+) as HTMLSpanElement;
+
+export interface categoryType {
   id: number;
   title: string;
   description: string;
@@ -55,7 +59,12 @@ class CategoryView {
 
   categoryValidation() {
     let isExisted: boolean = false;
-    if (categoryTitle.value.trim().length > 3) {
+    if (categoryTitle.value.trim().length < 3) {
+      this.setTitleWarning("Category title`s characters must be longer than 3");
+    } else if(categoryDescription.value.trim().length < 3) {
+      this.removeTitleWarning()
+      this.setDescriptionWarning("Category description`s characters must be longer than 3");
+    } else {
       const title = categoryTitle.value.trim().toLocaleLowerCase();
       this.categories.forEach(
         (item) => item.title === title && (isExisted = true)
@@ -64,9 +73,8 @@ class CategoryView {
       else {
         this.addCategory();
         this.removeTitleWarning();
+        this.removeDescriptionWarning()
       }
-    } else {
-      this.setTitleWarning("Category title`s characters must be longer than 3");
     }
   }
 
@@ -115,6 +123,19 @@ class CategoryView {
     categoryTitleWarning.classList.remove("block");
     categoryTitleWarning.classList.add("hidden");
     categoryTitle.classList.remove("warning");
+  }
+
+  setDescriptionWarning(error: string): void {
+    categoryDescriptionWarning.classList.remove("hidden");
+    categoryDescriptionWarning.classList.add("block");
+    categoryDescriptionWarning.innerText = error;
+    categoryDescription.classList.add("warning");
+  }
+
+  removeDescriptionWarning(): void {
+    categoryDescriptionWarning.classList.remove("block");
+    categoryDescriptionWarning.classList.add("hidden");
+    categoryDescription.classList.remove("warning");
   }
 }
 

@@ -6,6 +6,7 @@ const categoryList = document.querySelector("#product-category");
 const categorySection = document.querySelector("#add-category");
 const categoryLink = document.querySelector("#category-link");
 const categoryTitleWarning = document.querySelector("#category-title-warning");
+const categoryDescriptionWarning = document.querySelector("#category-description-warning");
 class CategoryView {
     constructor() {
         addCategoryBtn === null || addCategoryBtn === void 0 ? void 0 : addCategoryBtn.addEventListener("click", (e) => {
@@ -21,7 +22,14 @@ class CategoryView {
     }
     categoryValidation() {
         let isExisted = false;
-        if (categoryTitle.value.trim().length > 3) {
+        if (categoryTitle.value.trim().length < 3) {
+            this.setTitleWarning("Category title`s characters must be longer than 3");
+        }
+        else if (categoryDescription.value.trim().length < 3) {
+            this.removeTitleWarning();
+            this.setDescriptionWarning("Category description`s characters must be longer than 3");
+        }
+        else {
             const title = categoryTitle.value.trim().toLocaleLowerCase();
             this.categories.forEach((item) => item.title === title && (isExisted = true));
             if (isExisted)
@@ -29,10 +37,8 @@ class CategoryView {
             else {
                 this.addCategory();
                 this.removeTitleWarning();
+                this.removeDescriptionWarning();
             }
-        }
-        else {
-            this.setTitleWarning("Category title`s characters must be longer than 3");
         }
     }
     setCategory() {
@@ -75,6 +81,17 @@ class CategoryView {
         categoryTitleWarning.classList.remove("block");
         categoryTitleWarning.classList.add("hidden");
         categoryTitle.classList.remove("warning");
+    }
+    setDescriptionWarning(error) {
+        categoryDescriptionWarning.classList.remove("hidden");
+        categoryDescriptionWarning.classList.add("block");
+        categoryDescriptionWarning.innerText = error;
+        categoryDescription.classList.add("warning");
+    }
+    removeDescriptionWarning() {
+        categoryDescriptionWarning.classList.remove("block");
+        categoryDescriptionWarning.classList.add("hidden");
+        categoryDescription.classList.remove("warning");
     }
 }
 export default new CategoryView();

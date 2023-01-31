@@ -47,7 +47,9 @@ class ProductView {
       <div class="flex items-center gap-x-4 ">
           <span class="block text">${item.createdDate.shamsi}</span>
           <span class="block text">${item.createdDate.time}</span>
-          <span class="block text border border-slate-400 rounded-md p-1 text-sm">${item.category}</span>
+          <div class="tooltip overflow-wrap group max-w-[120px] relative inline-block text border border-slate-400 rounded-md p-1 text-sm">${item.category}
+          <span class="tooltipText hidden group-hover:inline-block w-28 bg-slate-300 dark:bg-slate-600 border-slate-400 text-center p-1 rounded-md absolute z-10 mb-2 left-[-50%] bottom-[100%]">${item.description}</span>
+          </div>
           <span class="bg-transparent flex items-center justify-center w-6 h-6 text border border-slate-500 rounded-full">${item.quantity}</span>
           <button type="button"  class="delete-product-btn p-1 text-sm text-red-700 dark:text-red-400 font-bold border-red-400 dark:border-red-500"  id="${item.id}">delete</button>
       </div>
@@ -75,10 +77,13 @@ class ProductView {
         }
     }
     addProduct() {
+        const category = JSON.parse(localStorage.getItem("category"))
+            .find((item) => item.id === +productCategory.options[productCategory.selectedIndex].value);
         const newProduct = {
             title: productTitle.value,
             quantity: Number(productQuantity.value),
-            category: productCategory.options[productCategory.selectedIndex].text,
+            category: category.title,
+            description: category.description,
             id: new Date().getTime(),
             createdDate: {
                 miladi: new Date(),
