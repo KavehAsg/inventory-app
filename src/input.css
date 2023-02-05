@@ -31,10 +31,6 @@
   button {
     @apply rounded-lg border border-slate-500 dark:border-slate-400 px-4 py-2 bg-transparent;
   }
-
-  form {
-    @apply bg-slate-300 dark:bg-slate-600 p-6 rounded-lg border border-slate-400;
-  }
 }
 
 @layer components {
@@ -44,6 +40,11 @@
 
   .text {
     @apply text-slate-800 dark:text-slate-300;
+  }
+
+  
+  .section {
+    @apply bg-slate-300 dark:bg-slate-600 p-6 rounded-lg border border-slate-400;
   }
 }
 

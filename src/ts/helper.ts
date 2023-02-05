@@ -7,3 +7,4 @@ export function debounce(func : (searchedText : string) => void , wait : number 
       }, wait);
     };
   }
+

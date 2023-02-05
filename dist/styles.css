@@ -699,21 +699,6 @@ button {
   border-color: rgb(148 163 184 / var(--tw-border-opacity));
 }
 
-form {
-  border-radius: 0.5rem;
-  border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgb(148 163 184 / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
-  padding: 1.5rem;
-}
-
-.dark form {
-  --tw-bg-opacity: 1;
-  background-color: rgb(71 85 105 / var(--tw-bg-opacity));
-}
-
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -867,6 +852,21 @@ form {
   color: rgb(203 213 225 / var(--tw-text-opacity));
 }
 
+.section {
+  border-radius: 0.5rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(148 163 184 / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+  padding: 1.5rem;
+}
+
+.dark .section {
+  --tw-bg-opacity: 1;
+  background-color: rgb(71 85 105 / var(--tw-bg-opacity));
+}
+
 .absolute {
   position: absolute;
 }
@@ -875,36 +875,12 @@ form {
   position: relative;
 }
 
-.left-0 {
-  left: 0px;
-}
-
-.bottom-\[100\%\] {
-  bottom: 100%;
-}
-
-.left-\[\] {
-  left: ;
-}
-
-.left-\[-\] {
-  left: -;
-}
-
-.left-\[-50\] {
-  left: -50;
-}
-
 .left-\[-50\%\] {
   left: -50%;
 }
 
-.left-\[-56\] {
-  left: -56;
-}
-
-.left-\[-56px\] {
-  left: -56px;
+.bottom-\[100\%\] {
+  bottom: 100%;
 }
 
 .z-10 {
@@ -932,20 +908,20 @@ form {
   margin-top: 0.5rem;
 }
 
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
 .mb-10 {
   margin-bottom: 2.5rem;
 }
 
 .mb-6 {
   margin-bottom: 1.5rem;
-}
-
-.-mr-14 {
-  margin-right: -3.5rem;
-}
-
-.mr-14 {
-  margin-right: 3.5rem;
 }
 
 .block {
@@ -968,8 +944,20 @@ form {
   height: 1.5rem;
 }
 
+.min-h-screen {
+  min-height: 100vh;
+}
+
 .w-full {
   width: 100%;
+}
+
+.w-2\/3 {
+  width: 66.666667%;
+}
+
+.w-7 {
+  width: 1.75rem;
 }
 
 .w-28 {
@@ -980,8 +968,8 @@ form {
   width: 1.5rem;
 }
 
-.max-w-xl {
-  max-width: 36rem;
+.max-w-2xl {
+  max-width: 42rem;
 }
 
 .max-w-\[120px\] {
@@ -994,6 +982,12 @@ form {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .flex-col {
@@ -1038,6 +1032,22 @@ form {
        column-gap: 1rem;
 }
 
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
 .rounded-md {
   border-radius: 0.375rem;
 }
@@ -1048,6 +1058,10 @@ form {
 
 .border {
   border-width: 1px;
+}
+
+.border-none {
+  border-style: none;
 }
 
 .border-slate-400 {
@@ -1082,6 +1096,10 @@ form {
 
 .bg-transparent {
   background-color: transparent;
+}
+
+.p-3 {
+  padding: 0.75rem;
 }
 
 .p-1 {
@@ -1148,8 +1166,19 @@ form {
   text-underline-offset: 4px;
 }
 
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 .warning {
@@ -1227,6 +1256,25 @@ form {
   background-color: var(--light);
 }
 
+.hover\:bg-slate-400:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
+}
+
+.disabled\:text:disabled {
+  --tw-text-opacity: 1;
+  color: rgb(30 41 59 / var(--tw-text-opacity));
+}
+
+.dark .disabled\:text:disabled {
+  --tw-text-opacity: 1;
+  color: rgb(203 213 225 / var(--tw-text-opacity));
+}
+
+.disabled\:bg-transparent:disabled {
+  background-color: transparent;
+}
+
 .group:hover .group-hover\:inline-block {
   display: inline-block;
 }
@@ -1262,6 +1310,10 @@ form {
 }
 
 @media (min-width: 768px) {
+  .md\:w-9 {
+    width: 2.25rem;
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
